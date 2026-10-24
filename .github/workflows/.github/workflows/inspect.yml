@@ -1,0 +1,13 @@
+name: Inspect
+on: workflow_dispatch
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Unzip and list
+        run: |
+          unzip -q Homebrew-Dodge-source.zip -d src
+          find src -maxdepth 3 | head -100
+          echo "---- build files ----"
+          find src \( -iname "Makefile" -o -iname "*.sh" -o -iname "CMakeLists.txt" -o -iname "*.gp4" -o -iname "param.sfo" \) | head -50
